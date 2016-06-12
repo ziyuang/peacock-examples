@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<meta charset="utf-8">
+<style>
+
+.node circle {
+  fill: #fff;
+  stroke: steelblue;
+  stroke-width: 1.5px;
+}
+
+.node {
+  font: 10px sans-serif;
+}
+
+.link {
+  fill: none;
+  stroke: #ccc;
+  stroke-width: 1.5px;
+}
+
+</style>
+<body>
+<script src="//d3js.org/d3.v3.min.js"></script>
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.0.0.min.js"></script>
+<script type="text/javascript" src="http://www.numericjs.com/lib/numeric-1.2.6.min.js"></script>
+<script type="text/javascript">
+  var seed = 0;
+  numeric.seedrandom.seedrandom(seed);
+  Math.random = numeric.seedrandom.random;
+</script>
+<script>
+
+var width = 400,
+    height = 900,
+    center_y = -200;
+
+var cluster = d3.layout.cluster()
+    .size([height, width - 160]);
+
+var bundle = d3.layout.bundle();
+
+var line = d3.svg.line()
+    .interpolate("bundle")
+    .tension(1)
+    .x(function(d) { return d.y; })
+    .y(function(d) { return d.x; });
+
+var svg = d3.select("body").append("svg")
+    .attr("width", width)
+    .attr("height", height)
+  .append("g")
+    .attr("transform", "translate(" + (width-2*center_y) + ",0)");
+
+d3.json("demo.json", function(error, root) {
+  if (error) throw error;
+  var root_copy = jQuery.extend(true, {}, root);
+  var nodes = cluster.nodes(root);
+
+  var mirrored_nodes = cluster.nodes(root_copy);
+  for (var i = 0; i < mirrored_nodes.length; i++) {
+    mirrored_nodes[i].y = 2 * center_y - mirrored_nodes[i].y;
+  }
+  for (var i = 0; i < mirrored_nodes.length; i++) {
+    mirrored_nodes[i].depth += 1;
+    nodes[i].depth += 1;
+  }
+  var super_root = {'children': [nodes[0], mirrored_nodes[0]], 'depth': 0, 'name':'root', 'x': nodes[0].x, 'y': center_y};
+  nodes[0]['parent'] = super_root;
+  mirrored_nodes[0]['parent'] = super_root;
+  mirrored_leaves = mirrored_nodes.filter(function(n) {return !n.children;});
+
+  connection_rtl = [10,11,12,13,14,15,16,17,18,19, 0,1,2,3,4,5,6,7,8,9, 29,28,27,26,25,24,23,22,21,20];
+
+  var links = nodes.filter(function(n) {return !n.children;}).map(function(n, i){
+    return {"source": n, "target": mirrored_leaves[connection_rtl[i]]};
+  });
+
+  nodes = nodes.concat(mirrored_nodes, super_root);
+
+  var link = svg.selectAll(".link")
+      .data(bundle(links))
+    .enter().append("path")
+      .attr("class", "link")
+      .attr("d", line);
+
+  var node = svg.selectAll(".node")
+      .data(nodes.filter(function(n){return !n.children;}))
+    .enter().append("g")
+      .attr("class", "node")
+      .attr("transform", function(d) { return "translate(" + d.y + "," + d.x + ")"; })
+
+  node.append("circle")
+      .attr("r", 4.5);
+
+});
+
+d3.select(self.frameElement).style("height", height + "px");
+d3.select('svg').attr('width', 2*(width-center_y));
+
+</script>
