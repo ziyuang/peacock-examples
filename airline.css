@@ -1,0 +1,18 @@
+.node {
+    fill: #eee;
+    stroke: black;
+    stroke-width: 1px;
+}
+
+.link {
+    stroke-width: 1px;
+    fill: none;
+    stroke-opacity: 0.4;
+}
+
+.link:hover {
+	stroke-width: 2px;
+	stroke-opacity: 1;
+	stroke: #000;
+}
+

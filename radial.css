@@ -1,0 +1,15 @@
+.node {
+  font: 300 11px "Helvetica Neue", Helvetica, Arial, sans-serif;
+  fill: #bbb;
+}
+
+.link {
+  stroke-opacity: .4;
+  fill: none;
+}
+
+.link:hover {
+	stroke-width: 2px;
+	stroke-opacity: 1;
+	stroke: #000;
+}

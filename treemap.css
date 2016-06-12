@@ -1,0 +1,31 @@
+.cell {
+  opacity: 0.2;
+  border: solid 1px white;
+  font: 10px sans-serif;
+  line-height: 12px;
+  overflow: hidden;
+  position: absolute;
+  text-indent: 2px;
+}
+
+.cell-rect {
+	opacity: 0.05;
+  border: solid 1px white;
+  line-height: 12px;
+}
+
+.cell-text {
+  opacity: 0.15;
+	font: 10px sans-serif;
+}
+
+.link {
+  stroke-opacity: .5;
+  fill: none;
+}
+
+.link:hover {
+  stroke-opacity: 1;
+  stroke: #000;
+  stroke-width: 2px;
+}
