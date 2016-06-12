@@ -1,1 +1,1 @@
-# peacock-examples
+# Interactive examples for Peacock Bundles
