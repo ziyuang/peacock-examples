@@ -9,7 +9,12 @@
 }
 
 .link:hover {
-	stroke-width: 2px;
-	stroke-opacity: 1;
+	stroke-width: 4px;
+	stroke-opacity: .8;
 	stroke: #000;
+}
+
+.link--bundled {
+  stroke-width: 4px;
+  stroke-opacity: .8;
 }

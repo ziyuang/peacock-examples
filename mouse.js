@@ -12,9 +12,11 @@ function mouseout() {
 }
 
 
-d3.selectAll('path')
-  .each(function(d) {
-    d3.select(this)
-      .on("mouseover", mouseover)
-      .on("mouseout", mouseout);
-  });
+function bindMouseEvents() {
+  d3.selectAll('path')
+    .each(function(d) {
+      d3.select(this)
+        .on("mouseover", mouseover)
+        .on("mouseout", mouseout);
+      });
+}

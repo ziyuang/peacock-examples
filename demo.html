@@ -36,12 +36,13 @@
 <script type="text/javascript" src="mouse.js"></script>
 <script type="text/javascript">
 	var bundleDistThrsh = 9;
-	var bundleCPThrsh = 0.4;
+	var bundleCPThrsh = 3;
 	var allLines = $("path").map(function () {
       var descMaps = parseCurveDesc($(this).attr("d"));
       return [concatCoords(descMaps)];
     });
 	adjMap = calcAdjacencyMap(allLines, bundleDistThrsh, bundleCPThrsh);
+	bindMouseEvents();
 
 
 </script>
