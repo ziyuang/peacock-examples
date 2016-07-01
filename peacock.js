@@ -219,3 +219,12 @@ function eDist(p1, p2, sqrt) {
 	else
 		return d;
 }
+
+
+if (typeof(module) !== undefined) {
+	module.exports = {
+		"parseCurveDesc": parseCurveDesc,
+		"concatCoords": concatCoords,
+		"calcAdjacencyMap": calcAdjacencyMap
+	};
+}
