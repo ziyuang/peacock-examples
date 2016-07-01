@@ -1,5 +1,5 @@
 .link {
-    stroke-width: 3px;
+    stroke-width: 2px;
     fill: none;
     stroke-opacity: 0.5;
 }
@@ -11,12 +11,7 @@
 }
 
 .link:hover {
-	stroke-width: 8px;
+	stroke-width: 3px;
 	stroke-opacity: 1;
 	stroke: #000;
-}
-
-.link--bundled {
-  stroke-width: 8px;
-  stroke-opacity: .8;
 }
