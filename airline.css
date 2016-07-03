@@ -7,12 +7,16 @@
 .link {
     stroke-width: 1px;
     fill: none;
-    stroke-opacity: 0.4;
+    stroke-opacity: 0.3;
 }
 
 .link:hover {
-	stroke-width: 2px;
+	stroke-width: 4px;
 	stroke-opacity: 1;
 	stroke: #000;
 }
 
+.link--bundled {
+  stroke-width: 4px;
+  stroke-opacity: .8;
+}
