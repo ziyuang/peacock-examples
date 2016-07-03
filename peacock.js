@@ -221,7 +221,7 @@ function eDist(p1, p2, sqrt) {
 }
 
 
-if (typeof(module) !== undefined) {
+if (typeof(module) !== "undefined") {
 	module.exports = {
 		"parseCurveDesc": parseCurveDesc,
 		"concatCoords": concatCoords,
